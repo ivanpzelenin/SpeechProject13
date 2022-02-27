@@ -1,0 +1,143 @@
+import numpy as np
+
+s1 = "hello, my name is Harry Potter."
+s2 = "Hello, Harry Potter, my name is Lord Voldemort"
+s3 = "So, what are you up to today?"
+s4 = "not much. Just sitting here coding up some bullshit"
+s5 = "Lol"
+s6 = "I mean, I could just magic this up, but where's the fun in that"
+s7 = "This muggle magic is weird"
+
+sentences= [s1,s2,s3,s4,s5,s6,s7]
+
+def capitalisation(sentences, base_rate= 0.5):
+    capital_count = 0
+    for sentence in sentences:
+        capital_count += capitalisation_helper(sentence)
+    if capital_count/len(sentences)>=base_rate:
+        return 1
+    else:
+        return 0
+
+def capitalisation_helper(sentence):
+    capital_letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    if sentence[0] in capital_letters:
+        return 1
+    else:
+        return 0
+
+def fullstop(sentences, base_rate = 0.5):
+    fullstop_count = 0
+    for sentence in sentences:
+        fullstop_count += fullstop_helper(sentence)
+
+    if fullstop_count / len(sentences) >= base_rate:
+        return 1
+    else:
+        return 0
+
+def fullstop_helper(sentence):
+    if sentence[-1] == ".":
+        return 1
+    else:
+        return 0
+
+
+def avg_sentence_len(sentences, base_rate= 5)
+    sentencelen_count = 0
+    for sentence in sentences:
+        sentencelen_count += sentencelen_helper(sentence)
+
+    if sentencelen_count / len(sentences) >= base_rate:
+        return 1
+    else:
+        return 0
+
+def sentencelen_helper(sentence):
+    return len(sentence)
+
+def nonalphanum(sentences, base_rate= 0.5):
+    nonalphanum_count = 0
+    for sentence in sentences:
+        nonalphanum_count += sentencelen_helper(sentence)
+
+    if nonalphanum_count / len(sentences) >= base_rate:
+        return 1
+    else:
+        return 0
+
+def nonalphanum_helper(sentence):
+    nonalphanums = 0
+    for char in sentence:
+        if char.isalphanum() == False:
+            nonalphanums += 1
+
+    return nonalphanums
+
+
+def lenstd(sentences, base_rate = 0.5):
+    sentence_lens = []
+    for sentence in sentences:
+        sentence_lens.append(len(sentence))
+
+    if  np.std(sentence_lens) >= base_rate:
+        return 1
+    else:
+        return 0
+
+def getlabels(sentences):
+    profile = {}
+    profile["capitalisation"] = capitalisation(sentences)
+    profile["fullstop"] = fullstop(sentences)
+    profile["sentencelen"] = sentencelen(sentences)
+    profile["nonalphanum"] = nonalphanum(Sentences)
+    profile["lenstd"] = lenstd(sentences)
+
+
+
+
+
+
+#TESTING capitalizsation()
+
+print(sentences)
+print("Capitalisation for sentences is: ")
+print(capitalisation(sentences))
+print()
+
+"""
+print(s2)
+print("Capitalisation of this sentence is: ")
+print(capitalisation(s2))
+"""
+
+"""
+#TESTING fullstop()
+print(s1)
+print("Fullstop of this sentence is: ")
+print(fullstop(s1))
+print()
+
+print(s2)
+print("Fullstop of this sentence is: ")
+print(fullstop(s2))
+"""
+"""
+#TESTING sentencelen()
+print(s5)
+print("Length of this sentence is: ")
+print(sentencelen(s5))
+print()
+
+print(s7)
+print("Sentencelen of this sentence is: ")
+print(sentencelen(s7))
+"""
+
+"""1. Capitalisation of the first word in an utterance DONE
+2. Use of full stops at the end of an utterance (edited) DONE
+3. Average length of utterance DONE
+4. Standard deviation of the length of utterances 
+5. Frequency of use of non-letter symbols (proxy for catching emoticons. You may have a better idea of how to do this) (edited)
+6. "Complexity" of vocabulary (where the words the user uses are in terms of ranking of frequency of appearence in the English language)
+7. The frequency of use of slang words (defined as belonging to a "slang" category. One can easily extend this to other categories, each having its own predefined vocabulary)"""
